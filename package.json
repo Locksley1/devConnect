@@ -1,0 +1,24 @@
+{
+  "name": "devconnect",
+  "version": "1.0.0",
+  "description": "Social media for developers and engineers",
+  "main": "index.js",
+  "scripts": {
+    "backend": "npm start --prefix backend",
+    "frontend": "npm start --prefix frontend",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lockesley1/devConnect.git"
+  },
+  "author": "Locke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lockesley1/devConnect/issues"
+  },
+  "homepage": "https://github.com/Lockesley1/devConnect#readme",
+  "devDependencies": {
+    "concurrently": "^6.0.2"
+  }
+}
