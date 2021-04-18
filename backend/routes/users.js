@@ -10,7 +10,7 @@ const bcryptjs = require('bcryptjs');
 
 const User = require('../models/User');
 
-// @route   POST api/users
+// @route   POST /users
 // @desc    Register new user
 // @access  Private
 router.post('/', [
