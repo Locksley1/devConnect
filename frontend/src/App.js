@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'; 
 
 import Navbar from './components/layout/Navbar';
@@ -12,9 +12,20 @@ import Register from './components/auth/Register';
 import {Provider} from 'react-redux';
 import store from './store';
 
+import setJWT from './utils/setJWT';
+
+import {authenticateUser} from './actions/auth';
+
 import './App.css';
 
-function App() {
+if (localStorage.token)
+        setJWT(localStorage.token);
+
+const App = () => {
+  useEffect(() => {
+    store.dispatch(authenticateUser());
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>
@@ -32,6 +43,6 @@ function App() {
       </Router>
     </Provider>
   );
-}
+};
 
 export default App;

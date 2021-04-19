@@ -1,5 +1,9 @@
 import React, {Fragment, useState} from 'react'
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+
+import {loginUser} from '../../actions/auth'; 
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -17,7 +21,8 @@ const Login = () => {
 
     const onSubmit = async event => {
         event.preventDefault();
-        console.log('SUCCESS');
+
+        loginUser(email, password);
     }
      
     return (
@@ -46,11 +51,15 @@ const Login = () => {
                         required
                     />
                 </div>
-                <input type="submit" className="btn btn-primary" value="Register" />
+                <input type="submit" className="btn btn-primary" value="Login" />
             </form>
-            <p className="my-1">Don't have an account? <Link to="/register">Register</Link></p>
+            <p className="my-1">Don't have an account? <Link to="/login">Login</Link></p>
         </Fragment>
     )
 }
 
-export default Login
+Login.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+};
+
+export default connect(null, { loginUser })(Login);
