@@ -13,6 +13,11 @@ import {LOGIN_FAIL} from './types';
 import {AUTH_SUCCESS} from './types';
 import {AUTH_FAIL} from './types';
 
+import {LOGOUT} from './types';
+
+import {REMOVE_PROFILE} from './types';
+
+
 
 export const authenticateUser = () => async dispatch => {
     if (localStorage.token)
@@ -70,7 +75,7 @@ export const registerUser = ({name, email, password}) => async dispatch => {
     }
 };
 
-export const loginUser = ({email, password}) => async dispatch => {
+export const loginUser = (email, password) => async dispatch => {
     const config = {
         headers: {
             'Content-Type':'application/json',
@@ -101,4 +106,9 @@ export const loginUser = ({email, password}) => async dispatch => {
             type: LOGIN_FAIL
         });
     }
+};
+
+export const logoutUser = () => dispatch => {
+    dispatch({type: REMOVE_PROFILE});
+    dispatch({type: LOGOUT});
 };

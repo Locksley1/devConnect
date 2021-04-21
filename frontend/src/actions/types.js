@@ -10,3 +10,14 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 
+export const LOGOUT = "LOGOUT";
+
+export const GET_PROFILE = "GET_PROFILE";
+export const REMOVE_PROFILE = "REMOVE_PROFILE";
+export const PROFILE_ERROR = "PROFILE_ERROR";
+
+export const ACCOUNT_DELETED = "ACCOUNT_DELETED";
+
+export const UPDATE_PROFILE = "UPDATE_PROFILE";
+
+export const GET_PROFILES = "GET_PROFILES";

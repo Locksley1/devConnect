@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react'
-import {Link} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import PropTypes from 'prop-types'
@@ -36,6 +36,9 @@ const Register = (props) => {
             props.setAlert('Password mismatch!', 'danger');
     }
      
+    if (props.authenticated)
+        return <Redirect to="/dashboard" />
+
     return (
         <Fragment>
             <h1 className="large text-primary">Sign Up</h1>
@@ -96,6 +99,11 @@ const Register = (props) => {
 Register.propTypes = {
     setAlert: PropTypes.func.isRequired,
     registerUser: PropTypes.func.isRequired,
+    authenticated: PropTypes.bool,
 };
 
-export default connect(null, {setAlert, registerUser})(Register);
+const mapStateToProps = state => ({
+    authenticated: state.auth.authenticated
+});
+
+export default connect(mapStateToProps, {setAlert, registerUser})(Register);

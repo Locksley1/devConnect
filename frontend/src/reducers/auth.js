@@ -7,6 +7,8 @@ import {LOGIN_FAIL} from '../actions/types';
 import {AUTH_SUCCESS} from '../actions/types';
 import {AUTH_FAIL} from '../actions/types';
 
+import {LOGOUT} from '../actions/types';
+
 const initialState = {
     token: localStorage.getItem('token'),
     authenticated: null,
@@ -26,7 +28,7 @@ export default function auth(state = initialState, action)
             loading: false,
         }
     }
-    else if(action.type === REGISTER_FAIL || action.type === AUTH_FAIL || action.type === LOGIN_FAIL)
+    else if(action.type === REGISTER_FAIL || action.type === AUTH_FAIL || action.type === LOGIN_FAIL || action.type === LOGOUT)
     {
         localStorage.removeItem('token');
         return {
