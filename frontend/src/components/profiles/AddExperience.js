@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addExperience } from '../../actions/profile';
 
 const AddExperience = ({ addExperience, history }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState( {
     company: '',
     title: '',
     location: '',
@@ -15,7 +15,15 @@ const AddExperience = ({ addExperience, history }) => {
     description: ''
   });
 
-  const { company, title, location, from, to, current, description } = formData;
+  const { 
+    company, 
+    title, 
+    location, 
+    from, 
+    to, 
+    current, 
+    description 
+  } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -21,3 +21,12 @@ export const ACCOUNT_DELETED = "ACCOUNT_DELETED";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 
 export const GET_PROFILES = "GET_PROFILES";
+
+export const CLEAR_PROFILE = "CLEAR_PROFILE";
+
+export const GET_POSTS = "GET_POSTS";
+export const POST_ERROR = "POST_ERROR";
+
+export const UPDATE_POST_LIKES = "UPDATE_POST_LIKES";
+
+export const DELETE_POST = "DELETE_POST";

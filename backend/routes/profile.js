@@ -47,8 +47,6 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    console.log('testing');
-
     // destructure the request
     const {
       website,
