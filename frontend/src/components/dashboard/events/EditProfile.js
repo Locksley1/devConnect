@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile, getProfile } from '../../actions/profile';
+import { createProfile, getProfile } from '../../../actions/profile';
 
 const initialState = {
   company: '',
@@ -19,15 +19,13 @@ const initialState = {
   instagram: ''
 };
 
-const ProfileForm = ({
+const EditProfile = ({
   profile: { profile, loading },
   createProfile,
   getProfile,
   history
 }) => {
   const [formData, setFormData] = useState(initialState);
-
-  const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   useEffect(() => {
     if (!profile) getProfile();
@@ -163,18 +161,7 @@ const ProfileForm = ({
           <small className="form-text">Tell us a little about yourself</small>
         </div>
 
-        <div className="my-2">
-          <button
-            onClick={() => toggleSocialInputs(!displaySocialInputs)}
-            type="button"
-            className="btn btn-light"
-          >
-            Add Social Network Links
-          </button>
-          <span>Optional</span>
-        </div>
-
-        {displaySocialInputs && (
+        {(
           <Fragment>
             <div className="form-group social-input">
               <i className="fab fa-twitter fa-2x" />
@@ -242,7 +229,7 @@ const ProfileForm = ({
   );
 };
 
-ProfileForm.propTypes = {
+EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   getProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
@@ -253,5 +240,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { createProfile, getProfile })(
-  ProfileForm
+  EditProfile
 );

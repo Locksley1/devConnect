@@ -6,21 +6,25 @@ import Spinner from '../layout/spinner/Spinner';
 
 import PostItem from './PostItem';
 
+import AddPost from './AddPost';
+
+
 import {getAllPosts} from '../../actions/post';
 
-const Posts = props => {
+const Posts = ({ getAllPosts, post: { posts, loading } }) => {
 
     useEffect(() => {
-        props.getAllPosts();
-    }, [props.getAllPosts]);
+        getAllPosts();
+    }, [getAllPosts]);
 
-    return props.post.loading ? <Spinner /> : (
+    return loading ? <Spinner /> : (
         <Fragment>
             <h1 className="large text-primary">Posts</h1>
             <p className="lead"><i className="fas fa-user"></i> Welcome to devConnect!</p>
 
+            <AddPost />
             <div className="posts">
-                {props.post.posts.map(post => (<PostItem key={post._id} post={post}/>))}
+                {posts.map(post => (<PostItem key={post._id} post={post}/>))}
             </div>
         </Fragment>
     );

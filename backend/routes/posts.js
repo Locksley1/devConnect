@@ -182,7 +182,7 @@ router.put('/unlike/:post_id', jwt_auth, async (req, res) => {
 router.post('/comment/:post_id', [jwt_auth, 
     check('text', 'Text required!').not().isEmpty(),
 ], async (req, res) => {
-
+ 4
     const validationErrors = validationResult(req);
 
     if (!validationErrors.isEmpty())
@@ -191,20 +191,20 @@ router.post('/comment/:post_id', [jwt_auth,
     
     try
     {
-        const user = await User.findById(req.user.id).select('-password');
-        const post = await Post.findById(req.params.id);
+        const user = await User.findById(req.loggedUser.id).select('-password');
+        const post = await Post.findById(req.params.post_id);
     
         const comment = {
-            user: req.loggedUser.id,
+            user_id: req.loggedUser.id,
             text: req.body.text,
             name: user.name,
             avatar: user.avatar
         };
-    
+        
         post.comments.unshift(comment);
     
         await post.save();
-    
+
         res.json(post.comments);
     }
     catch(error)
@@ -231,7 +231,7 @@ router.delete('/comment/:post_id/:comment_id', jwt_auth, async (req, res) => {
             return res.status(404).json({msg:'Comment not found!'});
 
         // Make sure user owns the comment
-        if (comment.user_id.toString() !== req.user.id)
+        if (comment.user_id.toString() !== req.loggedUser.id)
             return res.status(401).json({msg:'Unauthorized'})
 
         const index = post.comments.map(comment => comment.user_id.toString()).indexOf(req.loggedUser.id);

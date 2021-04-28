@@ -142,18 +142,16 @@ router.get(
 // @access   Private
 router.delete('/', jwt_auth, async (req, res) => {
   try {
-    // Remove user posts
-    // Remove profile
-    // Remove user
-    await Promise.all([
-      Post.deleteMany({ user: req.loggedUser.id }),
-      Profile.findOneAndRemove({ user: req.loggedUser.id }),
-      User.findOneAndRemove({ _id: req.loggedUser.id })
-    ]);
 
-    res.json({ msg: 'User deleted' });
-  } catch (err) {
-    console.error(err.message);
+    await Post.deleteMany({ user: req.loggedUser.id });
+    
+    await Profile.findOneAndRemove({ user: req.loggedUser.id });
+    
+    await User.findOneAndRemove({ _id: req.loggedUser.id });
+
+    res.json({ msg: 'Account deleted! Sorry to see you go!' });
+  } catch (error) {
+    console.error(error.message);
     res.status(500).send('Server Error');
   }
 });

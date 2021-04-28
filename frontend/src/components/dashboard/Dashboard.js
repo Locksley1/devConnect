@@ -2,23 +2,28 @@ import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getProfile, deleteAccount } from '../../actions/profile';
-import DashboardEvents from './DashboardEvents';
 
-import Experience from './Experience';
+import Spinner from '../layout/spinner/Spinner';
+
+import DashboardEvents from './events/DashboardEvents';
 import Education from './Education';
+import Experience from './Experience';
+
+
+import { deleteAccount } from '../../actions/profile';
+
+import { getProfile } from '../../actions/profile';
 
 const Dashboard = ({
   getProfile,
-  deleteAccount,
   auth: { logged_user },
-  profile: { profile }
+  profile: { profile, loading }
 }) => {
   useEffect(() => {
     getProfile();
   }, [getProfile]);
   
-  return (
+  return loading  && profile === null ? <Spinner /> :
     <Fragment>
       <h1 className="large text-primary">Dashboard</h1>
       <p className="lead">
@@ -27,11 +32,11 @@ const Dashboard = ({
       {profile !== null ? (
         <Fragment>
           <DashboardEvents />
-          <Experience experience={profile.experience} />
           <Education education={profile.education} />
+          <Experience experience={profile.experience} />
 
           <div className="my-2">
-            <button className="btn btn-danger" onClick={() => deleteAccount()}>
+            <button className="btn btn-danger">
               <i className="fas fa-user-minus" /> Delete My Account
             </button>
           </div>
@@ -45,7 +50,6 @@ const Dashboard = ({
         </Fragment>
       )}
     </Fragment>
-  );
 };
 
 Dashboard.propTypes = {

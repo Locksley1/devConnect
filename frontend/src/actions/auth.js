@@ -15,7 +15,7 @@ import {AUTH_FAIL} from './types';
 
 import {LOGOUT} from './types';
 
-import {REMOVE_PROFILE} from './types';
+import {CLEAR_PROFILE} from './types';
 
 
 
@@ -109,6 +109,6 @@ export const loginUser = (email, password) => async dispatch => {
 };
 
 export const logoutUser = () => dispatch => {
-    dispatch({type: REMOVE_PROFILE});
+    dispatch({type: CLEAR_PROFILE});
     dispatch({type: LOGOUT});
 };

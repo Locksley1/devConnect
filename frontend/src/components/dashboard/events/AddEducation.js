@@ -2,27 +2,27 @@ import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addExperience } from '../../actions/profile';
+import { addEducation } from '../../../actions/profile';
 
-const AddExperience = ({ addExperience, history }) => {
-  const [formData, setFormData] = useState( {
-    company: '',
-    title: '',
-    location: '',
+const AddEducation = ({ addEducation, history }) => {
+  const [formData, setFormData] = useState({
+    school: '',
+    degree: '',
+    fieldofstudy: '',
     from: '',
     to: '',
     current: false,
     description: ''
   });
 
-  const { 
-    company, 
-    title, 
-    location, 
-    from, 
-    to, 
-    current, 
-    description 
+  const {
+    school,
+    degree,
+    fieldofstudy,
+    from,
+    to,
+    description,
+    current
   } = formData;
 
   const onChange = e =>
@@ -30,25 +30,25 @@ const AddExperience = ({ addExperience, history }) => {
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Add An Experience</h1>
+      <h1 className="large text-primary">Add Your Education</h1>
       <p className="lead">
-        <i className="fas fa-code-branch" /> Add any developer/programming
-        positions that you have had in the past
+        <i className="fas fa-code-branch" /> Add any school or bootcamp that you
+        have attended
       </p>
       <small>* = required field</small>
       <form
         className="form"
         onSubmit={e => {
           e.preventDefault();
-          addExperience(formData, history);
+          addEducation(formData, history);
         }}
       >
         <div className="form-group">
           <input
             type="text"
-            placeholder="* Job Title"
-            name="title"
-            value={title}
+            placeholder="* School or Bootcamp"
+            name="school"
+            value={school}
             onChange={onChange}
             required
           />
@@ -56,9 +56,9 @@ const AddExperience = ({ addExperience, history }) => {
         <div className="form-group">
           <input
             type="text"
-            placeholder="* Company"
-            name="company"
-            value={company}
+            placeholder="* Degree or Certificate"
+            name="degree"
+            value={degree}
             onChange={onChange}
             required
           />
@@ -66,9 +66,9 @@ const AddExperience = ({ addExperience, history }) => {
         <div className="form-group">
           <input
             type="text"
-            placeholder="Location"
-            name="location"
-            value={location}
+            placeholder="Field of Study"
+            name="fieldofstudy"
+            value={fieldofstudy}
             onChange={onChange}
           />
         </div>
@@ -83,11 +83,9 @@ const AddExperience = ({ addExperience, history }) => {
               name="current"
               checked={current}
               value={current}
-              onChange={() => {
-                setFormData({ ...formData, current: !current });
-              }}
+              onChange={() => setFormData({ ...formData, current: !current })}
             />{' '}
-            Current Job
+            Current School
           </p>
         </div>
         <div className="form-group">
@@ -105,7 +103,7 @@ const AddExperience = ({ addExperience, history }) => {
             name="description"
             cols="30"
             rows="5"
-            placeholder="Job Description"
+            placeholder="Program Description"
             value={description}
             onChange={onChange}
           />
@@ -119,8 +117,8 @@ const AddExperience = ({ addExperience, history }) => {
   );
 };
 
-AddExperience.propTypes = {
-  addExperience: PropTypes.func.isRequired
+AddEducation.propTypes = {
+  addEducation: PropTypes.func.isRequired
 };
 
-export default connect(null, { addExperience })(AddExperience);
+export default connect(null, { addEducation })(AddEducation);
