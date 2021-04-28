@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const config = require('config');
 const mongoDB = config.get('mongoDB');
 
+const path = require('path');
+
 const connectMongoDB = async () => {
     try 
     {
@@ -29,15 +31,19 @@ app.use(express.json({extended:false}));
 
 const port = process.env.PORT || 5000;
 
-app.get('/', (req, res) => {
-    res.send('API running');
-});
-
 app.use('/auth', require('./routes/auth'));
 app.use('/users', require('./routes/users'));
 app.use('/profile', require('./routes/profile'));
 app.use('/posts', require('./routes/posts'));
 
+if (process.env.NODE_ENV === 'production')
+{
+    app.use(express.static('frontend/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve('../', __dirname, 'frontend', 'build', 'index.html'));
+    });
+}
 
 app.listen(port, () => {
     console.log('Server running...');
