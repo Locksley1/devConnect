@@ -1,4 +1,5 @@
 import {GET_PROFILE} from '../actions/types';
+import {GET_PROFILES} from '../actions/types';
 import {UPDATE_PROFILE} from '../actions/types';
 import {CLEAR_PROFILE} from '../actions/types';
 import {PROFILE_ERROR} from '../actions/types';
@@ -21,14 +22,14 @@ export default function(state = initialState, action) {
             loading: false,
         }
     }
-    // else if(action.type === GET_PROFILES)
-    // {
-    //     return {
-    //       ...state,
-    //       profiles: action.payload,
-    //       loading: false
-    //     };
-    // }
+    else if(action.type === GET_PROFILES)
+    {
+        return {
+          ...state,
+          profiles: action.payload,
+          loading: false
+        };
+    }
     else if (action.type === CLEAR_PROFILE)
     {
         return {

@@ -16,7 +16,6 @@ const Post = require('../models/Post');
 // @desc     Get current users profile
 // @access   Private
 router.get('/me', jwt_auth, async (req, res) => {
-  console.log(req.loggedUser.id);
   try {
     const profile = await Profile.findOne({
       user: req.loggedUser.id
@@ -59,9 +58,6 @@ router.post(
       // spread the rest of the fields we don't need to check
       ...rest
     } = req.body;
-
-    console.log('testing');
-    console.log(req.loggedUser);
 
     // build a profile
     const profileFields = {

@@ -18,7 +18,6 @@ import {LOGOUT} from './types';
 import {CLEAR_PROFILE} from './types';
 
 
-
 export const authenticateUser = () => async dispatch => {
     if (localStorage.token)
         setJWT(localStorage.token);
