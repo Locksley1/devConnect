@@ -4,8 +4,8 @@
   "description": "Social media for Developers and Engineers",
   "main": "app.js",
   "scripts": {
-    "app": "nodemon app",
-    "start": "node app"
+    "app": "node app",
+    "start": "nodemon app"
   },
   "author": "Locke",
   "license": "MIT",

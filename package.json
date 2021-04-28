@@ -6,9 +6,7 @@
   "scripts": {
     "backend": "npm start --prefix backend",
     "frontend": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
-    "start":"npm run backend",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm i --prefix frontend && npm run build --prefix frontend"
+    "start": "concurrently \"npm run backend\" \"npm run frontend\""
   },
   "repository": {
     "type": "git",
